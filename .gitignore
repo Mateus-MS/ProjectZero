@@ -1,4 +1,4 @@
 **tmp/
 **/.env
-*.css.map
+**/css
 build/**

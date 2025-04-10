@@ -9,5 +9,5 @@ type RoutesPages struct {
 func RegisterRoutes(app *app.Application) {
 	pagesRoutes := &RoutesPages{App: app}
 
-	app.Router.HandleFunc("/learn", pagesRoutes.LearnPageRoute)
+	app.Router.HandleFunc("/test", pagesRoutes.LearnPageRoute)
 }

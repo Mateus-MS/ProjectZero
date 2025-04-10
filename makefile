@@ -12,19 +12,6 @@ API_URL_PROD = https://cubonauta.com
 
 all: build
 
-dev_start:
-	@echo "\033[35mStarting development server...\033[0m"
-
-	@echo "\033[35m Starting the HTTP SERVER \033[0m"
-	@cd ./dev && air &
-
-	@echo "\033[35m Watching the TEMPL files \033[0m"
-	@cd ./dev && templ generate --watch &
-
-	@echo "\033[35m Watching the SASS files \033[0m"
-	@cd ./dev/frontend/mobile/src && sass --watch sass:css &
-	@cd ./dev/frontend/desktop/src && sass --watch sass:css &
-
 reset: 
 	@echo "\033[35mCleaning $(BUILD_DIR)\033[0m"
 	@rm -rf $(BUILD_DIR)/*

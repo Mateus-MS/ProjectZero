@@ -7,11 +7,11 @@ func (app *RoutesPages) LearnPageRoute(w http.ResponseWriter, r *http.Request) {
 		<!DOCTYPE html>
 		<html>
 		<head>
-			<title>Protected Page</title>
+			<title>Test page</title>
 		</head>
 		<body>
-			<h1>Welcome to the Protected Page</h1>
-			<p>This content is only available to authorized users.</p>
+			<h1>Welcome to test page</h1>
+			<p>I'm just testing</p>
 		</body>
 		</html>
 	`
