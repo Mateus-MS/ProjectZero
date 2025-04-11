@@ -11,8 +11,15 @@ type Application struct {
 }
 
 func NewApplication() *Application {
+	// Create the router
+	router := http.NewServeMux()
+
+	// Serve static files from the "frontend" directory
+	router.Handle("/frontend/", http.StripPrefix("/frontend/", http.FileServer(http.Dir("dev/frontend"))))
+
+	// Return the application instance
 	return &Application{
 		// DB:     GetInstance(),
-		Router: http.NewServeMux(),
+		Router: router,
 	}
 }

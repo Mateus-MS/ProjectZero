@@ -1,21 +1,18 @@
 package routes_pages
 
-import "net/http"
+import (
+	"net/http"
+	"strings"
+
+	test_page_mob "github.com/Mateus-MS/ProjectZero.git/dev/frontend/mobile/pages/test_page"
+)
 
 func (app *RoutesPages) LearnPageRoute(w http.ResponseWriter, r *http.Request) {
-	html := `
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<title>Test page</title>
-		</head>
-		<body>
-			<h1>Welcome to test page</h1>
-			<p>I'm just testing</p>
-		</body>
-		</html>
-	`
-	w.Header().Set("Content-Type", "text/html")
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(html))
+	// Send the page only if the user agent is mobile
+	if strings.Contains(r.UserAgent(), "Mobile") {
+		test_page_mob.TestPage("test").Render(r.Context(), w)
+	}
+
+	// If the user agent is not mobile, return a 404 error
+	http.Error(w, "Page not found", http.StatusNotFound)
 }
