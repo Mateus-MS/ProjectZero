@@ -37,7 +37,7 @@ Project Zero comes with a small but powerfull set of features to help you build 
 - ⚙️ **[Router](#router)** <br>
     A clean and scalable way to group and register your routes using Go.
 - 🧩 **[Middlewares](#middlewares)** <br>
-    Easily plug in reusable logic (like auth or CORS) before hitting your route handlers — fully composable using middleware chains.
+    Easily plug in reusable logic before hitting your route handlers — fully composable using middleware chains.
 
 ---
 
@@ -103,14 +103,13 @@ func (user *UserRoutes) RegisterRoute(w http.ResponseWriter, r *http.Request) {
 ```
 
 > [!TIP]
-> __Consistency tip:__ 🧩 <br>
-> Suffix all route handler function names with "Route" (e.g., `RegisterRoute`, `LoginRoute`).
+> For consistency suffix all route handler function names with "Route" (e.g., `RegisterRoute`, `LoginRoute`).
 
 As you can see the function is "tied" to the `UserRoutes` type, in another worlds, is on our routes group for user.
 
 ## Middlewares
 
-> [!IMPORTANT] ⚠️ **Note:**
+> [!IMPORTANT]
 > Currently, middlewares can **only** be used in chains — even if you're applying just one.
 
 > [!NOTE] ❌ **No global middlewares support (Yet)**
