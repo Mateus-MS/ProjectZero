@@ -110,9 +110,11 @@ As you can see the function is "tied" to the `UserRoutes` type, in another world
 ## Middlewares
 
 > [!IMPORTANT]
+> ⚠️ **Note:**
 > Currently, middlewares can **only** be used in chains — even if you're applying just one.
 
-> [!NOTE] ❌ **No global middlewares support (Yet)**
+> [!NOTE]
+> ❌ **No global middlewares support (Yet)**
 > Unlike some frameworks, you **cannot** apply middlewares globally in Project Zero... for now 😅
 
 ### 🔍 What Are Middlewares?
