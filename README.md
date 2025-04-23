@@ -34,7 +34,7 @@ This repo includes everything you need to get up and running:
 ## ✨ Features
 Project Zero comes with a small but powerfull set of features to help you build web applications faster:
 
-- ⚙️ **[Router](#-router)** <br>
+- ⚙️ **[Router](#router)** <br>
     A clean and scalable way to group and register your routes using Go.
 
 ---
