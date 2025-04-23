@@ -197,3 +197,19 @@ func CustomMiddleware(allowedMethods ...string) Middleware {
 }
 ```
 And that’s it — you've got a clean, reusable middleware 💪
+
+# 👥 Who's Using Project Zero?
+Project Zero is already helping developers kickstart their Go-based web applications with ease! Here are a few examples of how **Project Zero** is being used:
+
+🧊 [Cubonauta](https://cubonauta.com): Cubonauta is a platform dedicated to teaching newcomers and helping veterans master the art of solving the Rubik's Cube.
+
+✍️ [Xeubiart](https://xeubiart.com): Xeubiart is a talented tattoo artist based in Portugal, who uses **Project Zero** as the foundation for their personal website.
+
+----
+
+If you're using Project Zero in your project, feel free to share it with us! Drop a message in the issues or a pull request, and we'll be happy to showcase it here. Let’s grow the Project Zero community together! 🚀
+
+<br>
+<br>
+
+![Works on My Machine](https://img.shields.io/badge/works-on%20my%20machine-green?style=flat&logo=probot)
