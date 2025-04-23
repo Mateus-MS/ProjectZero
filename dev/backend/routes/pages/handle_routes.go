@@ -1,6 +1,11 @@
 package routes_pages
 
-import "github.com/Mateus-MS/ProjectZero.git/dev/backend/app"
+import (
+	"net/http"
+
+	"github.com/Mateus-MS/ProjectZero.git/dev/backend/app"
+	"github.com/Mateus-MS/ProjectZero.git/dev/backend/middlewares"
+)
 
 type RoutesPages struct {
 	App *app.Application
@@ -9,5 +14,13 @@ type RoutesPages struct {
 func RegisterRoutes(app *app.Application) {
 	pagesRoutes := &RoutesPages{App: app}
 
+	// Register a clean route
 	app.Router.HandleFunc("/test", pagesRoutes.TestPageRoute)
+
+	// Register a route with a middleware
+	app.Router.Handle("/test2", middlewares.Chain(
+		http.HandlerFunc(pagesRoutes.TestPageRoute),
+
+		middlewares.CorsMiddleware("GET"),
+	))
 }

@@ -1,6 +1,6 @@
 # 🚀 Project Zero
 
-Welcome to **Project Zero** - cool name, right?
+Welcome to **Project Zero** — cool name, right?
 
 This project is a lightweight boilerplate that i created to kickstart new Go-Based web applications without having to rewrite the same code every time. <br>
 Think of it as my __starter pack__ for spinning up HTTP servers with templating and styling baked in.
@@ -36,6 +36,8 @@ Project Zero comes with a small but powerfull set of features to help you build 
 
 - ⚙️ **[Router](#router)** <br>
     A clean and scalable way to group and register your routes using Go.
+- 🧩 **[Middlewares](#middlewares)** <br>
+    Easily plug in reusable logic (like auth or CORS) before hitting your route handlers — fully composable using middleware chains.
 
 ---
 
@@ -52,7 +54,7 @@ routes\       # Main folder for all your routes.
 │      
 ├── user\     # Custom folder for routes related to users.  
 │   │   
-│   │   # These are your defined routes.
+│   │         # These are your defined routes.
 │   │   
 │   ├── registerRoute.go   
 │   ├── loginRoute.go
@@ -100,9 +102,94 @@ func (user *UserRoutes) RegisterRoute(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-> [!NOTE]
+> [!TIP]
 > __Consistency tip:__ 🧩 <br>
 > Suffix all route handler function names with "Route" (e.g., `RegisterRoute`, `LoginRoute`).
 
 As you can see the function is "tied" to the `UserRoutes` type, in another worlds, is on our routes group for user.
 
+## Middlewares
+
+> [!IMPORTANT] ⚠️ **Note:**
+> Currently, middlewares can **only** be used in chains — even if you're applying just one.
+
+> [!NOTE] ❌ **No global middlewares support (Yet)**
+> Unlike some frameworks, you **cannot** apply middlewares globally in Project Zero... for now 😅
+
+### 🔍 What Are Middlewares?
+
+Middlewares are small functions that run **before** your actual route logic. They're useful for handling common tasks like:
+
+
+- Authentication ✅  
+- CORS headers 🌍  
+- Logging 📝  
+- Input validation 📋 
+
+Let’s say you have several endpoints that require checking for an authentication cookie. Sure, you *could* call an auth function manually at the top of each handler — but that clutters your endpoint logic. Instead, you can use a middleware and attach it directly to the route. Clean and simple.
+
+### 🛠️ Using Middlewares in Project Zero
+
+Let’s revisit the standard route registration (as shown in [Router](#router)):
+
+```go
+func RegisterRoutes(app *app.Application){
+    userRoutes := &UserRoutes{App: app}
+    
+    app.Router.HandleFunc("/register", userRoutes.RegisterRoute)
+}
+```
+
+Now let’s say we want to use a middleware, like CorsMiddleware.
+> [!IMPORTANT] ⚠️ **Note:**
+> Currently, middlewares can **only** be used in chains — even if you're applying just one.
+
+```go
+func RegisterRoutes(app *app.Application) {
+    userRoutes := &UserRoutes{App: app}
+
+    app.Router.HandleFunc(
+        "/register",
+        middlewares.Chain(
+            // Endpoint
+            http.HandlerFunc(userRoutes.RegisterRoute),
+            
+            // Middlewares
+            middlewares.CorsMiddleware("GET"),
+        ),
+    )
+}
+```
+
+### 🧱 Middleware breakdown
+
+`middlewares.Chain()`
+
+This function wraps your handler in one or more middleware layers. It accepts:
+
+- http.Handler — your actual endpoint
+- One or more middleware functions that conform to the Middleware type.
+
+Middleware Example: `CorsMiddleware`
+```go
+middlewares.CorsMiddleware("GET")
+```
+> [!NOTE]
+> Some middlewares might require parameters (like allowed methods), so be sure to check their function signatures.
+
+### 🧪 Creating Your Own Middleware
+
+You can define custom middleware in the middlewares/ folder. Just follow this structure:
+
+```go
+func CustomMiddleware(allowedMethods ...string) Middleware {
+    return func(next http.Handler) http.Handler {
+        return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+            // Your custom logic here
+
+            next.ServeHTTP(w, r.WithContext(r.Context()))
+        })
+    }
+}
+```
+And that’s it — you've got a clean, reusable middleware 💪
