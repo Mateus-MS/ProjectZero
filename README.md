@@ -109,12 +109,12 @@ As you can see the function is "tied" to the `UserRoutes` type, in another world
 
 ## Middlewares
 
-> [!IMPORTANT]
-> ⚠️ **Note:**
+> [!WARNING]
+> ⚠️ **Note:** <br>
 > Currently, middlewares can **only** be used in chains — even if you're applying just one.
 
-> [!NOTE]
-> ❌ **No global middlewares support (Yet)**
+> [!IMPORTANT]
+> ❌ **No global middlewares support (Yet)** <br>
 > Unlike some frameworks, you **cannot** apply middlewares globally in Project Zero... for now 😅
 
 ### 🔍 What Are Middlewares?
@@ -142,7 +142,8 @@ func RegisterRoutes(app *app.Application){
 ```
 
 Now let’s say we want to use a middleware, like CorsMiddleware.
-> [!IMPORTANT] ⚠️ **Note:**
+> [!WARNING] 
+> ⚠️ **Note:** <br>
 > Currently, middlewares can **only** be used in chains — even if you're applying just one.
 
 ```go
