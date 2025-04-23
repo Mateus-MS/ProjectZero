@@ -3,8 +3,8 @@ package routes_pages
 import (
 	"net/http"
 
-	"github.com/Mateus-MS/ProjectZero.git/dev/backend/app"
-	"github.com/Mateus-MS/ProjectZero.git/dev/backend/middlewares"
+	"github.com/Mateus-MS/ProjectZero/dev/backend/app"
+	"github.com/Mateus-MS/ProjectZero/dev/backend/middlewares"
 )
 
 type RoutesPages struct {

@@ -1,4 +1,4 @@
-module github.com/Mateus-MS/ProjectZero.git
+module github.com/Mateus-MS/ProjectZero
 
 go 1.24.1
 

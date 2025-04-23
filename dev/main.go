@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/Mateus-MS/ProjectZero.git/dev/backend/app"
-	routes_pages "github.com/Mateus-MS/ProjectZero.git/dev/backend/routes/pages"
+	"github.com/Mateus-MS/ProjectZero/dev/backend/app"
+	routes_pages "github.com/Mateus-MS/ProjectZero/dev/backend/routes/pages"
 )
 
 func main() {

@@ -9,7 +9,7 @@ Whether you're prototyping fast or building something small and clean, this base
 
 ---
 
-### 🧱 Tech Stack Overview
+## 🧱 Tech Stack Overview
 
 ### Backend
 - Built with pure **[Go](https://go.dev/doc/effective_go) (Golang)** 🦫 - no frameworks, just standard libraries for full controll and simplicity.
@@ -94,7 +94,7 @@ func RegisterRoutes(app *app.Application){
 We'll discuss the parameters for `HandleFunc` in more detail shortly.
 
 > [!NOTE]
-> Grouping routes is optional. If you have a route that don't make sense the group with others, there's no need to create an entire group just for that.
+> Grouping routes is optional. If you have a route that don't make sense to group with others, there's no need to create an entire group just for that.
 
 ### Creating routes
 

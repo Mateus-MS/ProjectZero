@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	test_page_mob "github.com/Mateus-MS/ProjectZero.git/dev/frontend/mobile/pages/test_page"
+	test_page_mob "github.com/Mateus-MS/ProjectZero/dev/frontend/mobile/pages/test_page"
 )
 
 func (app *RoutesPages) TestPageRoute(w http.ResponseWriter, r *http.Request) {
