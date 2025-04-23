@@ -18,6 +18,8 @@ Whether you're prototyping fast or building something small and clean, this base
 ### Frontend
 - Styled with **[SASS](https://sass-lang.com/documentation/)** for flexible and maintanable CSS.
 
+---
+
 ## 📦 What's Inside?
 
 This repo includes everything you need to get up and running:
@@ -27,15 +29,17 @@ This repo includes everything you need to get up and running:
 - 🔁 **Hot reload support** — auto-compile your Go and SASS files during development
 - 🏗️ **Build command** — easily compile your app for production
 
+---
+
 ## ✨ Features
 Project Zero comes with a small but powerfull set of features to help you build web applications faster:
 
-- ⚙️ **[Router](#-Router)** <br>
+- ⚙️ **[Router](#-router)** <br>
     A clean and scalable way to group and register your routes using Go.
 
-----
+---
 
-# Documentation
+# 📚 Documentation
 
 ## Router
 
