@@ -9,7 +9,7 @@ Whether you're prototyping fast or building something small and clean, this base
 
 ---
 
-### Tech Stack Overview
+### 🧱 Tech Stack Overview
 
 ### Backend
 - Built with pure **[Go](https://go.dev/doc/effective_go) (Golang)** 🦫 - no frameworks, just standard libraries for full controll and simplicity.
@@ -26,6 +26,16 @@ This repo includes everything you need to get up and running:
 - 📁 **Organized folder structure** — a clear project layout to keep things tidy
 - 🔁 **Hot reload support** — auto-compile your Go and SASS files during development
 - 🏗️ **Build command** — easily compile your app for production
+
+## ✨ Features
+Project Zero comes with a small but powerfull set of features to help you build web applications faster:
+
+- ⚙️ **[Router](#-Router)** <br>
+    A clean and scalable way to group and register your routes using Go.
+
+----
+
+# Documentation
 
 ## Router
 
@@ -87,7 +97,7 @@ func (user *UserRoutes) RegisterRoute(w http.ResponseWriter, r *http.Request) {
 ```
 
 > [!NOTE]
-> __🧩 Consistency tip:__ <br>
+> __Consistency tip:__ 🧩 <br>
 > Suffix all route handler function names with "Route" (e.g., `RegisterRoute`, `LoginRoute`).
 
 As you can see the function is "tied" to the `UserRoutes` type, in another worlds, is on our routes group for user.

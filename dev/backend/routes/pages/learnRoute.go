@@ -7,7 +7,7 @@ import (
 	test_page_mob "github.com/Mateus-MS/ProjectZero.git/dev/frontend/mobile/pages/test_page"
 )
 
-func (app *RoutesPages) LearnPageRoute(w http.ResponseWriter, r *http.Request) {
+func (app *RoutesPages) TestPageRoute(w http.ResponseWriter, r *http.Request) {
 	// Send the page only if the user agent is mobile
 	if strings.Contains(r.UserAgent(), "Mobile") {
 		test_page_mob.TestPage("test").Render(r.Context(), w)
