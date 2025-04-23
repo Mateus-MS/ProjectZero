@@ -34,19 +34,19 @@ In your `app`, the `router` is the component where you define and attach your ro
 To keep things well-organized 🗂️, it's recomended to group related routes into logical folders. One way to do this is by creating a route group using the following structure:
 
 ```bash
-🗂️  routes\       # Main folder for all your routes.
-     │      
-🗂️  ├── user\     # Custom folder for routes related to users.  
-     │   │   
-     │   │   # These are your defined routes.
-     │   │   
-📄  │   ├── registerRoute.go   
-📄  │   ├── loginRoute.go
-     │   │   
-     │   │   # This file is where you gonna define
-     │   │   # the type and the function to register
-     │   │   # the routes you defined above.
-📄  │   └── handle_routes.go
+routes\       # Main folder for all your routes.
+│      
+├── user\     # Custom folder for routes related to users.  
+│   │   
+│   │   # These are your defined routes.
+│   │   
+│   ├── registerRoute.go   
+│   ├── loginRoute.go
+│   │   
+│   │   # This file is where you gonna define
+│   │   # the type and the function to register
+│   │   # the routes you defined above.
+│   └── handle_routes.go
 ```
 
 Inside the `user` folder, you'll define a Go file (e.g., `handle_routes.go`) that contains both a type and a function to manage the user-related routes.
