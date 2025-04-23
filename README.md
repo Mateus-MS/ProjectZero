@@ -43,6 +43,10 @@ Project Zero comes with a small but powerfull set of features to help you build 
 
 # 📚 Documentation
 
+This section provides more detailed information on how to use Project Zero.  
+
+Whether you're extending the boilerplate or just trying to understand how things are wired together, this is your go-to reference. 🔧
+
 ## Router
 
 In your `app`, the `router` is the component where you define and attach your routes so the application can listen and respond to incoming requests.
