@@ -1,7 +1,8 @@
-package middlewares
+package projectzero_middlewares
 
 import (
 	"net/http"
+	"slices"
 )
 
 func CorsMiddleware(allowedMethods ...string) Middleware {
@@ -11,7 +12,7 @@ func CorsMiddleware(allowedMethods ...string) Middleware {
 			// While create the string with the allowed methods
 			methodString := ""
 			for index, method := range allowedMethods {
-				if testIfMethodIsInArray(r.Method, allowedMethods) {
+				if slices.Contains(allowedMethods, r.Method) {
 					methodString += method
 					if index < len(allowedMethods)-1 {
 						methodString += ", "
@@ -36,13 +37,4 @@ func CorsMiddleware(allowedMethods ...string) Middleware {
 			next.ServeHTTP(w, r.WithContext(r.Context()))
 		})
 	}
-}
-
-func testIfMethodIsInArray(method string, array []string) bool {
-	for _, element := range array {
-		if element == method {
-			return true
-		}
-	}
-	return false
 }

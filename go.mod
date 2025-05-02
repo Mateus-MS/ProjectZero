@@ -1,4 +1,4 @@
-module github.com/Mateus-MS/ProjectZero
+module placeholder
 
 go 1.24.1
 

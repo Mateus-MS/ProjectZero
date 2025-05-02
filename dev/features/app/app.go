@@ -1,4 +1,4 @@
-package app
+package projectzero_app
 
 import (
 	"database/sql"

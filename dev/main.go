@@ -2,13 +2,12 @@ package main
 
 import (
 	"net/http"
-
-	"github.com/Mateus-MS/ProjectZero/dev/backend/app"
-	routes_pages "github.com/Mateus-MS/ProjectZero/dev/backend/routes/pages"
+	routes_pages "placeholder/dev/backend/routes/pages"
+	projectzero_app "placeholder/dev/projectZero/app"
 )
 
 func main() {
-	app := app.NewApplication()
+	app := projectzero_app.NewApplication()
 
 	routes_pages.RegisterRoutes(app)
 

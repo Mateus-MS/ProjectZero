@@ -2,9 +2,8 @@ package routes_pages
 
 import (
 	"net/http"
+	test_page_mob "placeholder/dev/frontend/desktop/pages/test_page"
 	"strings"
-
-	test_page_mob "github.com/Mateus-MS/ProjectZero/dev/frontend/mobile/pages/test_page"
 )
 
 func (app *RoutesPages) TestPageRoute(w http.ResponseWriter, r *http.Request) {
