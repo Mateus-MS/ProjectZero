@@ -2,14 +2,12 @@ package main
 
 import (
 	"net/http"
-	routes_pages "placeholder/dev/backend/routes/pages"
-	projectzero_app "placeholder/dev/projectZero/app"
+	_ "placeholder/dev/backend/routes/pages"
+	projectzero_app "placeholder/dev/features/app"
 )
 
 func main() {
-	app := projectzero_app.NewApplication()
-
-	routes_pages.RegisterRoutes(app)
+	app := projectzero_app.GetInstance()
 
 	startServer(app.Router, "dev")
 }
