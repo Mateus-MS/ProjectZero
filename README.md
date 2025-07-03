@@ -18,8 +18,6 @@ Whether you're prototyping fast or building something small and clean, this base
 ### Frontend
 - Styled with **[SASS](https://sass-lang.com/documentation/)** for flexible and maintanable CSS.
 
----
-
 ## 📦 What's Inside?
 
 This repo includes everything you need to get up and running:
@@ -29,7 +27,15 @@ This repo includes everything you need to get up and running:
 - 🔁 **Hot reload support** — auto-compile your Go and SASS files during development
 - 🏗️ **Build command** — easily compile your app for production
 
----
+## 🚀 Getting Started with `init.sh`
+To customize Project Zero for your own project (e.g.,updating module paths), run the included `init.sh` script. It automates replacing placeholders in your `go.mod` and source files.
+
+### How to use
+Open Git Bash or your WSL terminal and run:
+
+```bash
+./init.sh
+```
 
 ## ✨ Features
 Project Zero comes with a small but powerfull set of features to help you build web applications faster:
@@ -95,15 +101,18 @@ func init() {
 func init() {
     projectzero_app.GetInstance().RegisterRoutes(
         "/test/route",
-        // Wrap the handler with middleware
-        http.HandlerFunc(
-            projectzero_middlewares.Chain(
-                http.HandlerFunc(TestPageRoute), // Your endpoint handler
-                projectzero_middlewares.CorsMiddleware("GET"), // Middleware(s)
-            ).ServeHTTP,
-        ),
+        projectzero_middlewares.Chain(
+            http.HandlerFunc(TestPageRoute), // Your endpoint handler
+            projectzero_middlewares.CorsMiddleware("GET"), // Middleware(s)
+        ).ServeHTTP
     )
 }
+```
+
+For each route defined, you’ll need to call its init function in your `main.go` file by importing it like this:
+
+```go
+_ "placeholder/dev/backend/routes/your_route"
 ```
 
 ## Middlewares

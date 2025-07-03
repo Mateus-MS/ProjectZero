@@ -18,9 +18,10 @@ type Middleware func(http.Handler) http.Handler
 //	- CorsMiddleware
 //	- LoggerMiddleware  -> Last to be added, first to run
 
-func Chain(handler http.Handler, middlewares ...Middleware) http.Handler {
+func Chain(handler http.Handler, middlewares ...Middleware) http.HandlerFunc {
 	for i := len(middlewares) - 1; i >= 0; i-- {
 		handler = middlewares[i](handler)
 	}
-	return handler
+
+	return http.HandlerFunc(handler.ServeHTTP)
 }

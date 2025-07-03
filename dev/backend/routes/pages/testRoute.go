@@ -11,12 +11,10 @@ import (
 func init() {
 	projectzero_app.GetInstance().RegisterRoutes(
 		"/test/route",
-		http.HandlerFunc(
-			projectzero_middlewares.Chain(
-				http.HandlerFunc(TestPageRoute),
-				projectzero_middlewares.CorsMiddleware("GET"),
-			).ServeHTTP,
-		),
+		projectzero_middlewares.Chain(
+			http.HandlerFunc(TestPageRoute),
+			projectzero_middlewares.CorsMiddleware("GET"),
+		).ServeHTTP,
 	)
 }
 
