@@ -2,14 +2,14 @@ package routes_pages
 
 import (
 	"net/http"
-	projectzero_app "placeholder/dev/features/app"
+	app "placeholder/dev/features/app"
 	middlewares "placeholder/dev/features/middlewares"
 	test_page_mob "placeholder/dev/frontend/desktop/pages/test_page"
 	"strings"
 )
 
 func init() {
-	projectzero_app.GetInstance().RegisterRoutes(
+	app.GetInstance().RegisterRoutes(
 		"/test/route",
 		middlewares.Chain(
 			http.HandlerFunc(TestPageRoute),
