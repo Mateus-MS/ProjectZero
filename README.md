@@ -37,7 +37,8 @@ Open Git Bash or your WSL terminal and run:
 ./init.sh
 ```
 
-> [!CAUTION] Windows CMD or PowerShell do not support this script natively — use Git Bash or WSL instead.
+> [!CAUTION]
+> Windows CMD or PowerShell do not support this script natively — use Git Bash or WSL instead.
 
 The script will then ask for your GitHub project link and replace it in all the necessary places.
 
