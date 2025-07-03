@@ -33,7 +33,7 @@ Open Git Bash or your WSL terminal and run:
 
 The script will then ask for your GitHub project link and replace it in all the necessary places.
 
-### 🛠️ Build Instructions
+## 🛠️ Build Instructions
 Project Zero includes a build command to prepare your project for production by copying files, minifying JavaScript, and replacing development URLs.
 
 To run the build:
