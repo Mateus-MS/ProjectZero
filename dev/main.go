@@ -1,15 +1,20 @@
 package main
 
 import (
+	"flag"
 	"net/http"
 	_ "placeholder/dev/backend/routes/pages"
 	app "placeholder/dev/features/app"
 )
 
 func main() {
+	enviroment := flag.String("env", "dev", "The enviroment to run")
+
+	flag.Parse()
+
 	app := app.GetInstance()
 
-	startServer(app.Router, "dev")
+	startServer(app.Router, *enviroment)
 }
 
 func startServer(router *http.ServeMux, env string) {

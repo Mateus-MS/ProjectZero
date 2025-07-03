@@ -14,6 +14,20 @@ templ TestPage(name string) {
 templ head() {
     <head>
         <base href="/frontend/mobile/src/">
+        // To test if the url replacement is working
+        <script>
+            fetch("http://localhost:3000/api/test")
+            .then(
+                result => {
+                    console.log(result)
+                }
+            )
+            .catch(
+                result => {
+                    console.log(result)
+                }
+            )
+        </script>
         
         <title>Test page</title>
         <link rel="stylesheet" type="text/css" href="/static/main.css">

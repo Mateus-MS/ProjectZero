@@ -12,23 +12,14 @@ Whether you're prototyping fast or building something small and clean, this base
 ## 🧱 Tech Stack Overview
 
 ### Backend
-- Built with pure **[Go](https://go.dev/doc/effective_go) (Golang)** 🦫 - no frameworks, just standard libraries for full controll and simplicity.
+- Built with pure **[Go](https://go.dev/doc/effective_go) (Golang)** 🦫 - no frameworks, just standard libraries for full control and simplicity.
 - Uses **[Templ](https://templ.guide/)** for HTML templating, enabling efficient and clean server-side rendering.
 
 ### Frontend
-- Styled with **[SASS](https://sass-lang.com/documentation/)** for flexible and maintanable CSS.
-
-## 📦 What's Inside?
-
-This repo includes everything you need to get up and running:
-
-- ✅ **Boilerplate HTTP server** — fully set up and ready to serve routes
-- 📁 **Organized folder structure** — a clear project layout to keep things tidy
-- 🔁 **Hot reload support** — auto-compile your Go and SASS files during development
-- 🏗️ **Build command** — easily compile your app for production
+- Styled with **[SASS](https://sass-lang.com/documentation/)** for flexible and maintainable CSS.
 
 ## 🚀 Getting Started with `init.sh`
-To customize Project Zero for your own project (e.g.,updating module paths), run the included `init.sh` script. It automates replacing placeholders in your `go.mod` and source files.
+To customize Project Zero for your own project (e.g., updating module paths), run the included `init.sh` script. It automates replacing placeholders in your `go.mod` and source files.
 
 ### How to use
 Open Git Bash or your WSL terminal and run:
@@ -42,8 +33,27 @@ Open Git Bash or your WSL terminal and run:
 
 The script will then ask for your GitHub project link and replace it in all the necessary places.
 
+### 🛠️ Build Instructions
+Project Zero includes a build command to prepare your project for production by copying files, minifying JavaScript, and replacing development URLs.
+
+To run the build:
+```bash
+./build.sh
+```
+> [!CAUTION]
+> Like the [init](#-getting-started-with-initsh) command, it will run on `git bash` or `WSL`.
+
+> [!WARNING] 
+> The build process requires the `terser` JavaScript minifier to be installed and available in your system’s PATH.
+> `terser` is a Node.js package, so to install it you need to have [Node.js and npm](https://nodejs.org/pt) installed first.
+> Then install terser globally with:
+> ```bash
+> npm install -g terser
+> ```
+> Without terser installed, the minification step will raise an error, and will not copy the js folder to the build folder.
+
 ## ✨ Features
-Project Zero comes with a small but powerfull set of features to help you build web applications faster:
+Project Zero comes with a small but powerful set of features to help you build web applications faster:
 
 > [!NOTE]
 > ```bash
@@ -59,7 +69,14 @@ Project Zero comes with a small but powerfull set of features to help you build 
 - 🧩 **[Middlewares](#middlewares)** <br>
     Easily plug in reusable logic before hitting your route handlers — fully composable using middleware chains.
 
----
+## 📦 What's Inside?
+
+This repo includes everything you need to get up and running:
+
+- ✅ **Boilerplate HTTP server** — fully set up and ready to serve routes
+- 📁 **Organized folder structure** — a clear project layout to keep things tidy
+- 🔁 **Hot reload support** — auto-compile your Go and SASS files during development
+- 🏗️ **Build command** — easily compile your app for production (see above for details)
 
 # 📚 Documentation
 
@@ -71,7 +88,7 @@ Whether you're extending the boilerplate or just trying to understand how things
 
 In your `app`, the `router` is the component where you define and attach your routes so the application can listen and respond to incoming requests.
 
-To keep things well-organized 🗂️, it's recomended to group related routes into logical folders. One way to do this is by creating a route group using the following structure:
+To keep things well-organized 🗂️, it's recommended to group related routes into logical folders. One way to do this is by creating a route group using the following structure:
 
 ```bash
 routes\       # Main folder for all your routes.
