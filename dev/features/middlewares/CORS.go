@@ -1,4 +1,4 @@
-package projectzero_middlewares
+package middlewares
 
 import (
 	"net/http"

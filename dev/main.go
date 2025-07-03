@@ -3,11 +3,11 @@ package main
 import (
 	"net/http"
 	_ "placeholder/dev/backend/routes/pages"
-	projectzero_app "placeholder/dev/features/app"
+	app "placeholder/dev/features/app"
 )
 
 func main() {
-	app := projectzero_app.GetInstance()
+	app := app.GetInstance()
 
 	startServer(app.Router, "dev")
 }

@@ -3,7 +3,7 @@ package routes_pages
 import (
 	"net/http"
 	projectzero_app "placeholder/dev/features/app"
-	projectzero_middlewares "placeholder/dev/features/middlewares"
+	middlewares "placeholder/dev/features/middlewares"
 	test_page_mob "placeholder/dev/frontend/desktop/pages/test_page"
 	"strings"
 )
@@ -11,9 +11,9 @@ import (
 func init() {
 	projectzero_app.GetInstance().RegisterRoutes(
 		"/test/route",
-		projectzero_middlewares.Chain(
+		middlewares.Chain(
 			http.HandlerFunc(TestPageRoute),
-			projectzero_middlewares.CorsMiddleware("GET"),
+			middlewares.CorsMiddleware("GET"),
 		).ServeHTTP,
 	)
 }
