@@ -4,9 +4,6 @@ DEV_DIR=./dev
 BUILD_DIR=./build
 MAKEIGNORE=buildignore
 
-JS_DIR=./dev/frontend/mobile/src/js
-JS_MIN_DIR=./build/frontend/mobile/src/js
-
 API_URL_DEV="http://localhost:3000"
 API_URL_PROD="https://test.com"
 
@@ -26,17 +23,35 @@ replace_url() {
 
 # Minify JS files
 minify() {
-    echo -e "\033[35mMinifying files in $BUILD_DIR\033[0m"
+    echo -e "\033[35mMinifying mobile JS files in $BUILD_DIR\033[0m"
 
-    find "$JS_DIR" -type f -name "*.js" -exec bash -c '
-        for file; do
-            minified_path="$JS_MIN_DIR/${file#"$JS_DIR"/}"
+    # Mobile JS minify
+    find "./dev/frontend/mobile/src/js" -type f -name "*.js" -exec bash -c '
+        SRC_DIR="$1"
+        DEST_DIR="$2"
+        for file in "${@:3}"; do
+            minified_path="$DEST_DIR/${file#$SRC_DIR/}"
             mkdir -p "$(dirname "$minified_path")"
             terser "$file" --compress --mangle -o "$minified_path"
         done
-    ' _ {} +
+    ' _ "./dev/frontend/mobile/src/js" "./build/frontend/mobile/src/js" {} +
 
-    echo -e "\033[32mMinify completed.\033[0m"
+    echo -e "\033[32mMobile JS minify completed.\033[0m"
+
+    echo -e "\033[35mMinifying desktop JS files in $BUILD_DIR\033[0m"
+
+    # Desktop JS minify
+    find "./dev/frontend/desktop/src/js" -type f -name "*.js" -exec bash -c '
+        SRC_DIR="$1"
+        DEST_DIR="$2"
+        for file in "${@:3}"; do
+            minified_path="$DEST_DIR/${file#$SRC_DIR/}"
+            mkdir -p "$(dirname "$minified_path")"
+            terser "$file" --compress --mangle -o "$minified_path"
+        done
+    ' _ "./dev/frontend/desktop/src/js" "./build/frontend/desktop/src/js" {} +
+
+    echo -e "\033[32mDesktop JS minify completed.\033[0m"
 
     replace_url
 }
