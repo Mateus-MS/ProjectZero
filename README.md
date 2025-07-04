@@ -109,27 +109,13 @@ To register routes, create an `init` function inside the file where your endpoin
 
 Each endpoint should include its own `init` function for route registration.
 
-### Without middlewares
-
 ```go
 func init() {
-    projectzero_app.GetInstance().RegisterRoutes("/test/route", TestPageRoute)
+    app.GetInstance().Router.RegisterRoutes("/test/route", "GET", TestPageRoute)
 }
 ```
 
-### With middlewares
-
-```go
-func init() {
-    projectzero_app.GetInstance().RegisterRoutes(
-        "/test/route",
-        projectzero_middlewares.Chain(
-            http.HandlerFunc(TestPageRoute), // Your endpoint handler
-            projectzero_middlewares.CorsMiddleware("GET"), // Middleware(s)
-        ).ServeHTTP
-    )
-}
-```
+See more about [middlewares](#️-using-middlewares-in-project-zero).
 
 For each route defined, you’ll need to call its init function in your `main.go` file by importing it like this:
 
@@ -142,19 +128,14 @@ _ "placeholder/dev/backend/routes/your_route"
 > [!WARNING]
 > Currently, middlewares can **only** be used in chains — even if you're applying just one.
 
-> [!IMPORTANT]
-> ❌ **No global middlewares support (Yet)** <br>
-> Unlike some frameworks, you **cannot** apply middlewares globally in Project Zero... for now 😅
-
 ### 🔍 What Are Middlewares?
 
 Middlewares are small functions that run **before** your actual route logic. They're useful for handling common tasks like:
 
-
 - Authentication ✅  
 - CORS headers 🌍  
 - Logging 📝  
-- Input validation 📋 
+- Input validation 📋
 
 Let’s say you have several endpoints that require checking for an authentication cookie. Sure, you *could* call an auth function manually at the top of each handler — but that clutters your endpoint logic. Instead, you can use a middleware and attach it directly to the route. Clean and simple.
 
@@ -163,10 +144,8 @@ Let’s say you have several endpoints that require checking for an authenticati
 Let’s revisit the standard route registration (as shown in [Router](#router)):
 
 ```go
-func RegisterRoutes(app *app.Application){
-    userRoutes := &UserRoutes{App: app}
-    
-    app.Router.HandleFunc("/register", userRoutes.RegisterRoute)
+func init(){
+    app.GetInstance().Router.RegisterRoutes("/test/route", "GET", TestPageRoute)
 }
 ```
 
@@ -175,18 +154,14 @@ Now let’s say we want to use a middleware, like CorsMiddleware.
 > Currently, middlewares can **only** be used in chains — even if you're applying just one.
 
 ```go
-func RegisterRoutes(app *app.Application) {
-    userRoutes := &UserRoutes{App: app}
-
-    app.Router.HandleFunc(
-        "/register",
+func init() {
+    app.GetInstance().Router.RegisterRoutes(
+        "/test/route",
+        "GET", // The allowed methods
         middlewares.Chain(
-            // Endpoint
-            http.HandlerFunc(userRoutes.RegisterRoute),
-            
-            // Middlewares
-            middlewares.CorsMiddleware("GET"),
-        ),
+            http.HandlerFunc(TestPageRoute), // Your endpoint handler
+            middlewares.Auth(), // Middleware(s)
+        ).ServeHTTP
     )
 }
 ```
@@ -197,12 +172,13 @@ func RegisterRoutes(app *app.Application) {
 
 This function wraps your handler in one or more middleware layers. It accepts:
 
-- http.Handler — your actual endpoint
+- http.Handler — your actual endpoint.
+- http.Methods — the methods that your endpoint allow.
 - One or more middleware functions that conform to the Middleware type.
 
 Middleware Example: `CorsMiddleware`
 ```go
-middlewares.CorsMiddleware("GET")
+middlewares.CorsMiddleware(app.GetInstance().Router.Routes)
 ```
 > [!NOTE]
 > Some middlewares might require parameters (like allowed methods), so be sure to check their function signatures.

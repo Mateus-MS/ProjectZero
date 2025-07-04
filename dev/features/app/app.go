@@ -11,7 +11,7 @@ var app_once sync.Once
 
 type Application struct {
 	DB     *sql.DB
-	Router *http.ServeMux
+	Router *Router
 }
 
 func GetInstance() *Application {
@@ -23,18 +23,14 @@ func GetInstance() *Application {
 
 func newApplication() *Application {
 	// Create the router
-	router := http.NewServeMux()
+	router := CreateRouter()
 
 	// Serve static files from the "frontend" directory
-	router.Handle("/frontend/", http.StripPrefix("/frontend/", http.FileServer(http.Dir("dev/frontend"))))
+	router.Mux.Handle("/frontend/", http.StripPrefix("/frontend/", http.FileServer(http.Dir("dev/frontend"))))
 
 	// Return the application instance
 	return &Application{
 		// DB:     GetInstance(),
-		Router: router,
+		Router: &router,
 	}
-}
-
-func (app *Application) RegisterRoutes(route string, handler http.HandlerFunc) {
-	app.Router.HandleFunc(route, handler)
 }
