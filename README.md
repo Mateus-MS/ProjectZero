@@ -7,21 +7,49 @@ Think of it as my __starter pack__ for spinning up HTTP servers with templating 
 
 Whether you're prototyping fast or building something small and clean, this base setup will save you time and typing. ⌨️✨
 
----
-
 ## 🧱 Tech Stack Overview
 
 ### Backend
-- Built with pure **[Go](https://go.dev/doc/effective_go) (Golang)** 🦫 - no frameworks, just standard libraries for full control and simplicity.
-- Uses **[Templ](https://templ.guide/)** for HTML templating, enabling efficient and clean server-side rendering.
+- Built with pure **[Go](https://go.dev/doc/effective_go) (Golang)** 🦫 — no frameworks, just standard libraries for full control and simplicity.
+- Uses **[Templ](https://templ.guide/)** — for HTML templating, enabling efficient and clean server-side rendering.
 
 ### Frontend
-- Styled with **[SASS](https://sass-lang.com/documentation/)** for flexible and maintainable CSS.
+- Styled with **[SASS](https://sass-lang.com/documentation/)** — for flexible and maintainable CSS.
 
-## 🚀 Getting Started with `init.sh`
-To customize Project Zero for your own project (e.g., updating module paths), run the included `init.sh` script. It automates replacing placeholders in your `go.mod` and source files.
+## 🚀 Getting Started
+Project Zero is a **template repository**, meaning you don’t need to clone it manually — instead, generate your own project from it via GitHub.
 
-### How to use
+### 🧬 1. Create Your Project from the Template
+1. Go to the [Project Zero Template](https://github.com/Mateus-MS/ProjectZero) Repo on GitHub.
+2. Click the green **"Use this template"** button.
+3. Select **"Create a new repository"**.
+4. Name your new repository and click **"Create repository from template"**.
+   > 🎉 You now have your own copy of Project Zero without my messy Git history!
+
+### 🖥️ 2. Clone Your New Repository
+After creating your project from the template, clone your copy to your local machine:
+```bash
+git clone https://github.com/your-username/your-project-name.git
+cd your-project-name
+```
+
+### ⚙️ 3. Run the Init Script
+The init.sh script customizes your project by updating go.mod and all placeholder imports with your actual module path.
+```bash
+./init.sh
+```
+It will prompt you for your GitHub repo path (e.g. `github.com/your-username/your-project-name`) and handle the replacements for you.
+
+### ⚠️ Requirements
+> [!WARNING]
+> Run this script using **Git Bash** or **WSL** on Windows.
+> **PowerShell** and **CMD** are not supported and will likely cause errors.
+If you see permission issues:
+```bash
+chmod +x init.sh
+```
+
+### 📦 Setup Steps
 Open Git Bash or your WSL terminal and run:
 
 ```bash
@@ -34,23 +62,31 @@ Open Git Bash or your WSL terminal and run:
 The script will then ask for your GitHub project link and replace it in all the necessary places.
 
 ## 🛠️ Build Instructions
-Project Zero includes a build command to prepare your project for production by copying files, minifying JavaScript, and replacing development URLs.
+To prepare your project for production:
 
-To run the build:
 ```bash
 ./build.sh
 ```
 > [!CAUTION]
-> Like the [init](#-getting-started-with-initsh) command, it will run on `git bash` or `WSL`.
-
-> [!WARNING] 
-> The build process requires the `terser` JavaScript minifier to be installed and available in your system’s PATH.
-> `terser` is a Node.js package, so to install it you need to have [Node.js and npm](https://nodejs.org/pt) installed first.
-> Then install terser globally with:
+> You must have `terser` installed globally for JS minification.
+> ### Install it:
 > ```bash
 > npm install -g terser
 > ```
-> Without terser installed, the minification step will raise an error, and will not copy the js folder to the build folder.
+
+### What the build script does:
+- Compiles and copies frontend assets
+- Minifies JavaScript
+- Replaces development URLs for production
+
+## 🤫 Environment Variables
+Create a `.env` file at the root of your project with the following variables:
+```bash
+DBuser="your_user"
+DBpass="your_password"
+DBname="your_database_name"
+DBport="5432" # or your custom port
+```
 
 ## ✨ Features
 Project Zero comes with a small but powerful set of features to help you build web applications faster:
@@ -64,19 +100,10 @@ Project Zero comes with a small but powerful set of features to help you build w
 > ```
 > All features of **ProjectZero** are contained within this folder. You can easily update to the latest version by simply replacing this folder with the updated one.
 
-- ⚙️ **[Router](#router)** <br>
-    A clean and scalable way to group and register your routes using Go.
-- 🧩 **[Middlewares](#middlewares)** <br>
-    Easily plug in reusable logic before hitting your route handlers — fully composable using middleware chains.
-
-## 📦 What's Inside?
-
-This repo includes everything you need to get up and running:
-
-- ✅ **Boilerplate HTTP server** — fully set up and ready to serve routes
-- 📁 **Organized folder structure** — a clear project layout to keep things tidy
-- 🔁 **Hot reload support** — auto-compile your Go and SASS files during development
-- 🏗️ **Build command** — easily compile your app for production (see above for details)
+- ✅ Pre-wired HTTP server
+- 🧩 Modular routes and middlewares
+- 🔁 Hot reload support for Go and Sass
+- 🏗 Build system to prep for production
 
 # 📚 Documentation
 

@@ -30,7 +30,7 @@ func newApplication() *Application {
 
 	// Return the application instance
 	return &Application{
-		// DB:     GetInstance(),
+		DB:     StartDBConnection(),
 		Router: &router,
 	}
 }
